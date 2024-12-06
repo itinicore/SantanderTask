@@ -24,8 +24,8 @@ namespace SantanderAssessment.BackgroundServices
 
         public async Task ObserveNewsList(CancellationToken stoppingToken)
         {
-            string firebaseUrl = "https://santander-c9419-default-rtdb.europe-west1.firebasedatabase.app/beststories.json";
-            //string firebaseUrl = "https://hacker-news.firebaseio.com/v0/beststories.json";
+            //string firebaseUrl = "https://santander-c9419-default-rtdb.europe-west1.firebasedatabase.app/beststories.json";
+            string firebaseUrl = "https://hacker-news.firebaseio.com/v0/beststories.json";
 
             using (var httpClient = new HttpClient())
             {
@@ -93,8 +93,8 @@ namespace SantanderAssessment.BackgroundServices
 
         public async Task ObserveSingleStory(int storyId, CancellationToken stoppingToken)
         {
-            string storyUrl = $"https://santander-c9419-default-rtdb.europe-west1.firebasedatabase.app/item/{storyId}.json";
-            //string storyUrl = $"https://hacker-news.firebaseio.com/v0/item/{storyId}.json";
+            //string storyUrl = $"https://santander-c9419-default-rtdb.europe-west1.firebasedatabase.app/item/{storyId}.json";
+            string storyUrl = $"https://hacker-news.firebaseio.com/v0/item/{storyId}.json";
 
             using (var httpClient = new HttpClient())
             {

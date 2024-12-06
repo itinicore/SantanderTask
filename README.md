@@ -18,6 +18,7 @@ Essentially, if we want to handle a large number of requests without overloading
 1. Implement caching to store HackerNews data in memory and refresh the data periodically, e.g., every 5 minutes.
 2. Do the same as in option 1 but use HTTP caching instead.
 3. Store real-time data from HackerNews and react to its updates.
+And... also a couple more that require additional infrastructure to cache like e.g. Redis
 
 Given that the specified API uses real-time Firebase, I chose option 3.  
 The application listens for updates to the list of top news stories via REST Streaming and reacts to changes in individual stories (e.g., stopping listening to a particular story and removing it from the database if it is no longer in `beststories.json`).
@@ -26,15 +27,17 @@ The `HackerNewsBackgroundService` is responsible for listening to Firebase. It p
 
 I had some concerns regarding the number of (201) old connections to Firebase, but this did not cause any issues in the application nor according to Firebase's documentation, which supports up to 200,000 simultaneous connections.
 
+Also it's important to mention that when we subscribe to each one of 200 stories we do it at rate no higher than 10 per second to avoid heavy load on API.
+
 For better dependency separation, I used the `MediatR` library.
 
 ## Simplifications / Potential Development Points
 Since the task did not specify an expected completion time, I was uncertain about the desired level of execution. The task could be completed in any timeframe ranging from one hour to several days.  
-I believe the core part of the task is implemented correctly in a non-trivial way. Other aspects related to best practices would certainly be a plus, but I am unsure if the reviewer expected me to focus on them.  
+I believe the core part of the task is implemented correctly in a non-trivial way. Other aspects related to best practices would certainly be a plus, but I am unsure if task author expected me to focus on them.  
 I hope that highlighting my awareness of these practices and noting that they should be included in a complete production-grade solution is sufficient.
 
 Simplifications I made, which could be addressed with more time, include:
-- Lack of folder structure separating the presentation, application, and infrastructure layers.
+- Lack of project structure separating the presentation, application, and infrastructure layers.
 - We could have better granulation of operations in our notification handlers
 - Limited number of tests.
 - No performance testing.
