@@ -1,0 +1,6 @@
+@SantanderAssessment_HostAddress = http://localhost:5159
+
+GET {{SantanderAssessment_HostAddress}}/stories/
+Accept: application/json
+
+###
