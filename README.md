@@ -39,6 +39,7 @@ I hope that highlighting my awareness of these practices and noting that they sh
 Simplifications I made, which could be addressed with more time, include:
 - Lack of project structure separating the presentation, application, and infrastructure layers.
 - We could have better granulation of operations in our notification handlers
+- Error handling and retry mechanisms using e.g. Polly
 - Limited number of tests.
 - No performance testing.
 - Hardcoded values, such as the LiteDB file name in `StoriesRepository`.
